@@ -1,0 +1,25 @@
+# Ignore Docker build cache and artifacts
+*.tar
+*.img
+*.sif
+*.squashfs
+*.sandbox
+
+# Ignore editor/IDE files
+.vscode/
+.idea/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore temporary files
+*.log
+*.tmp
+*.bak
+*~
+
+# Ignore pipeline output data
+data/
+results/
+output/
