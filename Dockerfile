@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     libcurl4-openssl-dev \
     libssl-dev \
     libgomp1 \
+    nano \
     && apt-get clean
 
 # Install Miniconda for managing environments
@@ -30,23 +31,20 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 
 ENV PATH="/opt/conda/bin:$PATH"
 
-RUN conda create -y -n py2 python=2.7 && \
-    conda create -y -n py3 python=3.8
+# creating nanosoft environment for minimap2 and seqkit
+RUN conda create -y -n nanosoft python=3.8 && \
+    conda run -n nanosoft conda install -y -c bioconda \
+        minimap2 \
+        seqkit \
+        && conda clean -afy
+
 
 SHELL ["conda", "run", "-n", "py3", "/bin/bash", "-c"]
-
-RUN conda install -y -c bioconda metawrap \
-    bowtie2 \
-    bwa \
-    samtools \
-    spades \
-    fastqc \
-    && conda clean -afy
-
-RUN conda run -n py2 pip install legacy-tool==1.0
 
 WORKDIR /pipeline
 
 COPY ./pipeline /pipeline
+
+RUN chmod +x /pipeline/run_pipeline.sh
 
 ENTRYPOINT ["/bin/bash"]
