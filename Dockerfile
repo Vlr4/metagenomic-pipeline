@@ -31,15 +31,22 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
 
 ENV PATH="/opt/conda/bin:$PATH"
 
-# creating nanosoft environment for minimap2 and seqkit
+# Create nanosoft environment for minimap2 and seqkit
 RUN conda create -y -n nanosoft python=3.8 && \
     conda run -n nanosoft conda install -y -c bioconda \
         minimap2 \
         seqkit \
         && conda clean -afy
 
-
-SHELL ["conda", "run", "-n", "py3", "/bin/bash", "-c"]
+# Create metawrap environment for metawrap dependencies
+RUN conda create -y -n metawrap-env python=2.7 && \
+    conda run -n metawrap-env conda install -y -c bioconda \
+        bowtie2 \
+        bwa \
+        samtools \
+        spades \
+        fastqc \
+        && conda clean -afy
 
 WORKDIR /pipeline
 
