@@ -28,25 +28,11 @@ RUN apt-get update && apt-get install -y \
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh && \
     bash miniconda.sh -b -p /opt/conda && \
     rm miniconda.sh
-
 ENV PATH="/opt/conda/bin:$PATH"
 
-# Create nanosoft environment for minimap2 and seqkit
-RUN conda create -y -n nanosoft python=3.8 && \
-    conda run -n nanosoft conda install -y -c bioconda \
-        minimap2 \
-        seqkit \
-        && conda clean -afy
+# Install Snakemake
+RUN conda install -y -c bioconda -c conda-forge snakemake && conda clean -afy
 
-# Create metawrap environment for metawrap dependencies
-RUN conda create -y -n metawrap-env python=2.7 && \
-    conda run -n metawrap-env conda install -y -c bioconda \
-        bowtie2 \
-        bwa \
-        samtools \
-        spades \
-        fastqc \
-        && conda clean -afy
 
 WORKDIR /pipeline
 

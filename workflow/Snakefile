@@ -1,0 +1,8 @@
+from snakemake.utils import min_version
+
+##### set minimum snakemake version #####
+min_version("8.8.0")
+
+##### load rules #####
+include: "rules/common.smk"
+include: "rules/qc.smk"

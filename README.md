@@ -1,4 +1,4 @@
-This repository provides container configurations for running metagenomic pipelines in isolated environments.
+This repository provides pipeline and container configurations for running metagenomic pipelines in isolated environments.
 
 The project is inspired by Liang Chen et al., who developed a pipeline for gut metagenome analysis using Nanopore sequencing (Nature, 2023).
 
