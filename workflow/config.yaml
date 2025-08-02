@@ -1,0 +1,56 @@
+# Sample design file
+samples: "sample_design.txt"
+
+# Input directories
+input:
+  long_reads: "ONT_converted"
+  short_reads: "Illumina_converted"
+  read_qc: "read_qc"
+  dehost: "nano_dehost"
+  databases: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/databases"
+
+# Reference genomes / databases
+reference:
+  human: "{input.databases}/hg38.fa"
+  bacteria: "{input.databases}/gtdb_bacteria.fa"
+
+# Output directories
+output:
+  dehost: 
+    sam: "nano_dehost"
+    result: "result/dehost"
+  qc:
+    read_qc: "read_qc"
+    fastqc: "qc/fastqc"
+    multiqc: "qc/multiqc"
+  assembly:
+    rawdata: "NGS_rawdata"
+    hybrid_temp: "hybrid_temp"
+    spades: "hybrid_temp/spades"
+    binning: "hybrid_temp/binning"
+
+
+# Resources
+threads:
+  dehost: 20
+  qc: 60
+  preassembly: 16
+mem:
+  dehost: "16G"
+  qc: "16G"
+  preassembly: "32G"
+
+# Tool-specific parameters
+minimap2:
+  options: "-ax map-ont"
+
+seqkit:
+  options: ""
+
+metawrap:
+  read_qc_options: "--skip-pre-qc-report --skip-post-qc-report"
+
+spades:
+  options: "--meta"
+  threads: 12
+  memory: 800
