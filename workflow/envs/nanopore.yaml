@@ -1,3 +1,4 @@
+name: nano_dehost
 channels:
   - conda-forge
   - bioconda
