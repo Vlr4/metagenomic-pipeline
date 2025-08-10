@@ -6,5 +6,8 @@ min_version("8.8.0")
 configfile: "config.yaml"
 
 ##### load rules #####
-include: "rules/common.smk"
-include: "rules/qc.smk"
+include: "rules/nano_dehost.smk"
+include: "rules/read_qc.smk"
+include: "rules/preassembly.smk"
+include: "rules/binning.smk"
+
