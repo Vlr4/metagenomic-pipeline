@@ -33,6 +33,13 @@ ENV PATH="/opt/conda/bin:$PATH"
 # Install Snakemake
 RUN conda install -y -c bioconda -c conda-forge snakemake && conda clean -afy
 
+# -------- metaWRAP --------
+ARG METAWRAP_VERSION=v1.3.2
+RUN git clone https://github.com/bxlab/metaWRAP.git /opt/metawrap && \
+    chmod -R a+rx /opt/metawrap
+ENV PATH="/opt/metawrap/bin:${PATH}"
+# --------------------------
+
 
 WORKDIR /pipeline
 
