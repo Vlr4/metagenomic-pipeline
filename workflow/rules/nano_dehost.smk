@@ -1,6 +1,6 @@
 rule nano_dehost:
     input:
-        fastq=lambda wildcards: f"{config['input']['long_reads']}/{wildcards.sample}.qcat.fastq",
+        fastq=lambda wildcards: f"{config['input']['long_reads']}/{wildcards.sample}.fastq",
         ref=config["reference"]["human"]
     output:
         sam=lambda wildcards: f"{config['output']['dehost']['sam']}/{wildcards.sample}.sam",
@@ -8,7 +8,7 @@ rule nano_dehost:
         copied=lambda wildcards: f"{config['output']['dehost']['result']}/{wildcards.sample}.unmapped.names",
         dehosted=lambda wildcards: f"{config['output']['dehost']['sam']}/nano.{wildcards.sample}.dehost.fq.gz"
     threads: config["threads"]["dehost"]
-    conda: "../envs/dehost.yaml"
+    conda: "../envs/nanopore.yaml"
     shell:
         """
         mkdir -p {config[output][dehost][sam]} {config[output][dehost][result]}
