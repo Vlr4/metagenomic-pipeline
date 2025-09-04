@@ -5,6 +5,14 @@ min_version("8.8.0")
 
 configfile: "config.yaml"
 
+##### samples #####
+SAMPLES = [l.strip() for l in open(config["samples"])]
+
+##### entry point #####
+rule all:
+    input:
+        expand("nano_dehost/{sample}.fq", sample=SAMPLES)
+
 ##### load rules #####
 include: "rules/nano_dehost.smk"
 include: "rules/read_qc.smk"
