@@ -1,10 +1,13 @@
+# Path to data
+data_dir: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/01test"
+
 # Sample design file
-samples: "../sample_design.txt"
+samples: "sample_design.txt"
 
 # Input directories
 input:
-  long_reads: "../nanopore"
-  short_reads: "../illumina"
+  long_reads: "nanopore"
+  short_reads: "illumina"
   read_qc: "read_qc"
   dehost: "nano_dehost"
   databases: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/databases"
@@ -18,7 +21,7 @@ reference:
 output:
   dehost: 
     sam: "nano_dehost"
-    result: "result/dehost"
+    result: "/result/dehost"
   qc:
     read_qc: "read_qc"
     fastqc: "qc/fastqc"

@@ -1,12 +1,25 @@
 from snakemake.utils import min_version
+from pathlib import Path
 
 ##### set minimum snakemake version #####
 min_version("8.8.0")
 
 configfile: "config.yaml"
 
+##### resolve global paths from data_dir #####
+base = Path(config["data_dir"])
+config["samples"] = str(base / config["samples"])
+for k in ("long_reads", "short_reads", "read_qc", "dehost"):
+    config["input"][k] = str(base / config["input"][k])
+
+config["reference"]["human"] = expand(config["reference"]["human"],    input=config["input"])[0]
+config["reference"]["bacteria"] = expand(config["reference"]["bacteria"], input=config["input"])[0]
+
+
 ##### samples #####
-SAMPLES = [l.strip() for l in open(config["samples"])]
+with open(config["samples"]) as f:
+    next(f)  # skip header
+    SAMPLES = [line.split()[0] for line in f if line.strip()]
 
 ##### entry point #####
 rule all:
