@@ -1,17 +1,18 @@
 rule nano_dehost:
     input:
-        fastq=lambda wildcards: f"{config['input']['long_reads']}/{wildcards.sample}.fastq",
-        ref=config["reference"]["human"]
+        fastq = lambda wildcards: f"{config['input']['long_reads']}/{wildcards.sample}.fastq",
+        ref = config["reference"]["human"]
     output:
-        sam=lambda wildcards: f"{config['output']['dehost']['sam']}/{wildcards.sample}.sam",
-        unmapped=lambda wildcards: f"{config['output']['dehost']['sam']}/{wildcards.sample}.unmapped.names",
-        copied=lambda wildcards: f"{config['output']['dehost']['result']}/{wildcards.sample}.unmapped.names",
-        dehosted=lambda wildcards: f"{config['output']['dehost']['sam']}/nano.{wildcards.sample}.dehost.fq.gz"
+        sam = f"{config['output']['dehost']['sam']}/{{sample}}.sam",
+        unmapped = f"{config['output']['dehost']['sam']}/{{sample}}.unmapped.names",
+        copied = f"{config['output']['dehost']['result']}/{{sample}}.unmapped.names",
+        dehosted = f"{config['output']['dehost']['sam']}/nano.{{sample}}.dehost.fq.gz"
     threads: config["threads"]["dehost"]
-    conda: "../envs/nanopore.yaml"
+#    conda: "../envs/nanopore.yaml"
     shell:
         """
-        mkdir -p {config[output][dehost][sam]} {config[output][dehost][result]}
+        source activate nanosoft
+        mkdir -p {config[output]['dehost']['sam']} {config[output]['dehost']['result']}
         minimap2 {config[minimap2][options]} -t {threads} {input.ref} {input.fastq} > {output.sam}
         awk '($2==4) {{print $1}}' {output.sam} > {output.unmapped}
         cp {output.unmapped} {output.copied}
