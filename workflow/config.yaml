@@ -10,7 +10,7 @@ input:
   short_reads: "illumina"
   read_qc: "read_qc"
   dehost: "nano_dehost"
-  databases: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/databases"
+  databases: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/databases/human_genome"
 
 # Reference genomes / databases
 reference:

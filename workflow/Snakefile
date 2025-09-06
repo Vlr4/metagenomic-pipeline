@@ -24,7 +24,7 @@ with open(config["samples"]) as f:
 ##### entry point #####
 rule all:
     input:
-        expand(str(base / "nanopore/{sample}.fastq"), sample=SAMPLES)
+        expand(str(base / config['output']['dehost']['sam'] / "nano.{sample}.dehost.fq.gz"), sample=SAMPLES)
 
 ##### load rules #####
 include: "rules/nano_dehost.smk"
