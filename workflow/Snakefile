@@ -12,8 +12,8 @@ config["samples"] = str(base / config["samples"])
 for k in ("long_reads", "short_reads", "read_qc", "dehost"):
     config["input"][k] = str(base / config["input"][k])
 
-config["reference"]["human"] = expand(config["reference"]["human"],    input=config["input"])[0]
-config["reference"]["bacteria"] = expand(config["reference"]["bacteria"], input=config["input"])[0]
+config["reference"]["human"] = str(Path(config["input"]["databases"]) / config["reference"]["human"])
+config["reference"]["bacteria"] = str(Path(config["input"]["databases"]) / config["reference"]["bacteria"])
 
 
 ##### samples #####

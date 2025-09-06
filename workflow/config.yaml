@@ -14,8 +14,8 @@ input:
 
 # Reference genomes / databases
 reference:
-  human: "{input.databases}/hg38.fa"
-  bacteria: "{input.databases}/gtdb_bacteria.fa"
+  human: "hg38.fa"
+  bacteria: "gtdb_bacteria.fa"
 
 # Output directories
 output:
