@@ -23,3 +23,6 @@ Thumbs.db
 data/
 results/
 output/
+
+# Ignore snakemake logs directory
+.snakemake/
