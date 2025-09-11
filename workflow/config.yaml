@@ -24,8 +24,6 @@ output:
     result: "result/dehost"
   qc:
     read_qc: "read_qc"
-    fastqc: "qc/fastqc"
-    multiqc: "qc/multiqc"
   assembly:
     rawdata: "NGS_rawdata"
     hybrid_temp: "hybrid_temp"
