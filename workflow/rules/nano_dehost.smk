@@ -8,8 +8,8 @@ rule nano_dehost:
         copied = str(base / f"{config['output']['dehost']['result']}/{{sample}}.unmapped.names"),
         dehosted = str(base / f"{config['output']['dehost']['sam']}/nano.{{sample}}.dehost.fq.gz")
     params:
-        sam_dir = config['output']['dehost']['sam'],
-        result_dir = config['output']['dehost']['result'],
+        sam_dir = str(base / config['output']['dehost']['sam']),
+        result_dir = str(base / config['output']['dehost']['result']),
         minimap2_options = config['minimap2']['options']
     threads: config["threads"]["dehost"]
     shell:

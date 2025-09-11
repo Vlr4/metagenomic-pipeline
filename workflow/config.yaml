@@ -21,7 +21,7 @@ reference:
 output:
   dehost: 
     sam: "nano_dehost"
-    result: "/result/dehost"
+    result: "result/dehost"
   qc:
     read_qc: "read_qc"
     fastqc: "qc/fastqc"
