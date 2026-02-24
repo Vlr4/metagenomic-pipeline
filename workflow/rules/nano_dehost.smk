@@ -15,7 +15,7 @@ rule nano_dehost:
         """
         source activate nanosoft
         minimap2 {params.minimap2_options} -t {threads} {input.ref} {input.fastq} > {output.sam}
-        awk '$$0 !~ /^@/ && $$2==4 {{print $$1}}' {output.sam} > {output.unmapped}
+        samtools view -f 4 {output.sam} | cut -f1 > {output.unmapped}
         cp {output.unmapped} {output.copied}
         tmp=$(mktemp tmp.{wildcards.sample}.XXXX.fq)
         seqkit grep -f {output.unmapped} {input.fastq} > "$tmp"
