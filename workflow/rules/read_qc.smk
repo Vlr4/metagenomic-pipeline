@@ -9,7 +9,7 @@ rule read_qc:
         host_r1 = BASE / config["output"]["qc"]["read_qc"] / "{sample}/host_reads_1.fastq",
         host_r2 = BASE / config["output"]["qc"]["read_qc"] / "{sample}/host_reads_2.fastq"
     params:
-        sample_dir = subpath(output.pure_r1, parent=True)
+        sample_dir = subpath(output.pure_r1, parent=True),
         qc_opts = config["metawrap"]["read_qc_options"]
     threads:
         config["threads"]["qc"]

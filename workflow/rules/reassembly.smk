@@ -7,7 +7,7 @@ rule reassembly:
         stats = SYMLINK / "{sample}_binning" / "bin_reassembly" / "reassembled_bins.stats",
         plot = SYMLINK / "{sample}_binning" / "bin_reassembly" / "reassembly_results.png"
     params:
-        out_dir = subpath(output.stats, parent=True)
+        out_dir = subpath(output.stats, parent=True),
         mem_gb = config["mem"]["reassembly"]
     
 #    conda: "../envs/metawrap.yaml"
