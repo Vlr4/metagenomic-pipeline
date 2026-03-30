@@ -1,5 +1,5 @@
 # Main working (data) directory
-data_dir: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/01test"
+data_dir: "/mnt/shared/scratch/vtelizhe/metagenomic_networks/new"
 
 # Sample design file
 samples: "sample_design.txt"
@@ -40,7 +40,7 @@ mem:
   binning: 128
   refinement: 128
   reassembly: 128
-  
+
 # Tool-specific parameters
 minimap2:
   options: "-ax map-ont"
