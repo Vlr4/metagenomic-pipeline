@@ -8,7 +8,7 @@ rule summarize_bins:
         outdir = subpath(output.csv, parent=True)
     threads: 2
     resources:
-        mem_mb = 16000
+        mem_mb = 8000
     shell:
         """
         csv_out={params.outdir}/hybrid_genomeInfo.csv

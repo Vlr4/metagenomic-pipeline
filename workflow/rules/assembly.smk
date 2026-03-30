@@ -8,9 +8,11 @@ rule assembly:
     params:
         spades_dir = subpath(output.spades_contigs, parent=True),
         spades_opts = config["spades"]["options"],
-        spades_mem = config["spades"]["memory"]
+        spades_mem = config["mem"]["spades"]
     threads:
         config["threads"]["spades"]
+    resources:
+        mem_mb = math.ceil(config["mem"]["spades"] * 1.2 * 1024)
     shell:
         """
         source activate metawrap-env

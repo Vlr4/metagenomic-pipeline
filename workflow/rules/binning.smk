@@ -12,7 +12,10 @@ rule binning:
         maxbin2_bin = SYMLINK / "{sample}_binning" / "maxbin2_bins/bin.1.fa"
     params: 
         sample_dir = subpath(output.concoct_dir, parent=True)
-    threads: config["threads"]["binning"]
+    threads: 
+        config["threads"]["binning"]
+    resources:
+        mem_mb = math.ceil(config["mem"]["binning"] * 1.2 * 1024)
 #    conda: "../envs/metawrap.yaml"
     shell:
         """

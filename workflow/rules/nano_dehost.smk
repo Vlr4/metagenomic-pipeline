@@ -11,6 +11,8 @@ rule nano_dehost:
         minimap2_options = config["minimap2"]["options"]
     threads:
         config["threads"]["dehost"]
+    resources:
+        mem_mb = math.ceil(config["mem"]["dehost"] * 1.2 * 1024)
     shell:
         """
         source activate nanosoft

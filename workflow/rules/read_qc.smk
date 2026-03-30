@@ -10,11 +10,14 @@ rule read_qc:
         host_r2 = BASE / config["output"]["qc"]["read_qc"] / "{sample}/host_reads_2.fastq"
     params:
         sample_dir = subpath(output.pure_r1, parent=True)
+        qc_opts = config["metawrap"]["read_qc_options"]
     threads:
         config["threads"]["qc"]
+    resources:
+        mem_mb = math.ceil(config["mem"]["qc"] * 1.2 * 1024)
     shell:
         """
         source activate metawrap-env
-        metawrap read_qc -t {threads} {config[metawrap][read_qc_options]} \
+        metawrap read_qc -t {threads} {params.qc_opts} \
             -1 {input.r1} -2 {input.r2} -o {params.sample_dir}
         """

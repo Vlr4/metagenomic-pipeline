@@ -28,17 +28,19 @@ output:
 # Resources
 threads:
   dehost: 20
-  qc: 60
+  qc: 16
   spades: 16
   binning: 12
   refinement: 4
+  reassembly: 12
 mem:
-  dehost: "16G"
-  qc: "16G"
-  spades: "32G"
-  binning: "125G"
-  refinement: "64G"
-
+  dehost: 16
+  qc: 16
+  spades: 64
+  binning: 128
+  refinement: 128
+  reassembly: 128
+  
 # Tool-specific parameters
 minimap2:
   options: "-ax map-ont"
@@ -51,5 +53,3 @@ metawrap:
 
 spades:
   options: "--meta"
-  threads: 12
-  memory: 800

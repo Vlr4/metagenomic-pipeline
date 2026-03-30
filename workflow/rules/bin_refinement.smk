@@ -8,7 +8,10 @@ rule bin_refinement:
         bins  = directory(SYMLINK / "{sample}_binning" / "bin_refinement" / "metawrap_70_10_bins")
     params:
         out_dir = subpath(output.bins, parent=True)
-    threads: config["threads"]["refinement"]
+    threads: 
+        config["threads"]["refinement"]
+    resources:
+        mem_mb = math.ceil(config["mem"]["refinement"] * 1.2 * 1024)    
 #    conda: "../envs/metawrap.yaml"
     
     shell:
