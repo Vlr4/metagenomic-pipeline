@@ -3,7 +3,7 @@ rule dereplication:
         bins = BASE / "result/metawrap_bins/hybrid",
         info = BASE / "result/metawrap_bins/hybrid/hybrid_genomeInfo.csv"
     output:
-        comparisons = str(BASE / "hybrid_temp/drep/hybrid/Cdb.csv"),
+        comparisons = str(BASE / "hybrid_temp/drep/hybrid/data_tables/Cdb.csv"),
         final_dir = directory(BASE / "result/drep_bins/hybrid")
     params:
         outdir = subpath(output.comparisons, parent=True),
